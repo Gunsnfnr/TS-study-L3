@@ -53,23 +53,21 @@ const persons: Person[] = [
   }
 ];
 
-const isAdmin = (person: Person) => {
-  return person.type === 'admin';
+const isAdmin = (person: any): person is Admin => {
+  return 'role' in person;
 }
 
-const isUser = (person: Person) => {
-  return person.type === 'user';
+const isUser = (person: any): person is User => {
+  return 'group' in person;
 }
 
 const logPerson = (person: Person) => {
-  let adminPerson = person as Admin;
-  let userPerson = person as User;
   let information: string = '';
-  if (isAdmin(adminPerson)) {
-    information = adminPerson.role;
+  if (isAdmin(person)) {
+    information = person.role;
   }
-  if (isUser(userPerson)) {
-    information = userPerson.group;
+  if (isUser(person)) {
+    information = person.group;
   }
   console.log(` - ${person.name}, ${person.age}, ${information}`);
 }
