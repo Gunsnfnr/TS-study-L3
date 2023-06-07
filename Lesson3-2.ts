@@ -53,11 +53,11 @@ const persons: Person[] = [
   }
 ];
 
-const isAdmin = (person: any): person is Admin => {
+const isAdmin = (person: Person): person is Admin => {
   return 'role' in person;
 }
 
-const isUser = (person: any): person is User => {
+const isUser = (person: Person): person is User => {
   return 'group' in person;
 }
 
